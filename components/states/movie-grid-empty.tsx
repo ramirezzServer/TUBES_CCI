@@ -1,0 +1,11 @@
+interface MovieGridEmptyProps {
+  message: string;
+}
+
+export function MovieGridEmpty({ message }: MovieGridEmptyProps) {
+  return (
+    <div className="flex flex-col items-center justify-center gap-2 rounded-lg border border-dashed border-border py-16 text-center">
+      <p className="text-sm text-muted-foreground">{message}</p>
+    </div>
+  );
+}
