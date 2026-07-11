@@ -17,6 +17,10 @@ export function MovieDetailSkeleton() {
               <Skeleton className="h-6 w-20 rounded-md" />
               <Skeleton className="h-6 w-20 rounded-md" />
             </div>
+            <div className="flex gap-2">
+              <Skeleton className="h-8 w-36 rounded-lg" />
+              <Skeleton className="h-8 w-44 rounded-lg" />
+            </div>
             <div className="flex flex-col gap-2">
               <Skeleton className="h-4 w-full" />
               <Skeleton className="h-4 w-full" />

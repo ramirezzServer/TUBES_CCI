@@ -16,7 +16,13 @@ function isBrowser(): boolean {
 export function readCollection(key: string): CollectionItem[] {
   if (!isBrowser()) return EMPTY_COLLECTION;
 
-  const raw = window.localStorage.getItem(key);
+  let raw: string | null;
+  try {
+    raw = window.localStorage.getItem(key);
+  } catch {
+    return EMPTY_COLLECTION;
+  }
+
   const cached = cache.get(key);
   if (cached && cached.raw === raw) {
     return cached.items;
@@ -39,7 +45,12 @@ export function writeCollection(key: string, items: CollectionItem[]): void {
   if (!isBrowser()) return;
 
   const raw = JSON.stringify(items);
-  window.localStorage.setItem(key, raw);
+  try {
+    window.localStorage.setItem(key, raw);
+  } catch {
+    return;
+  }
+
   cache.set(key, { raw, items });
   window.dispatchEvent(
     new CustomEvent(COLLECTION_CHANGE_EVENT, { detail: { key } })
