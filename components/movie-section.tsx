@@ -4,8 +4,8 @@ import { useMovies } from "@/hooks/use-movies";
 import { getPopularMovies, getTrendingMoviesWeek } from "@/lib/tmdb";
 import { MovieGrid } from "@/components/movie-grid";
 import { MovieGridSkeleton } from "@/components/states/movie-grid-skeleton";
-import { MovieGridError } from "@/components/states/movie-grid-error";
-import { MovieGridEmpty } from "@/components/states/movie-grid-empty";
+import { ErrorState } from "@/components/states/error-state";
+import { EmptyState } from "@/components/states/empty-state";
 
 const fetchersByKind = {
   trending: getTrendingMoviesWeek,
@@ -26,9 +26,9 @@ export function MovieSection({ title, kind }: MovieSectionProps) {
       {isLoading ? (
         <MovieGridSkeleton />
       ) : error ? (
-        <MovieGridError message={error} />
+        <ErrorState message={error} />
       ) : movies.length === 0 ? (
-        <MovieGridEmpty message="Belum ada film untuk ditampilkan." />
+        <EmptyState message="Belum ada film untuk ditampilkan." />
       ) : (
         <MovieGrid movies={movies} />
       )}
