@@ -8,6 +8,7 @@ import { getBackdropUrl, getPosterUrl, getProfileUrl } from "@/lib/tmdb";
 import { MovieDetailSkeleton } from "@/components/states/movie-detail-skeleton";
 import { ErrorState } from "@/components/states/error-state";
 import { EmptyState } from "@/components/states/empty-state";
+import { TrackButtons } from "@/components/track-buttons";
 
 interface MovieDetailViewProps {
   id: string;
@@ -103,6 +104,8 @@ export function MovieDetailView({ id }: MovieDetailViewProps) {
                 </span>
               ))}
             </div>
+
+            <TrackButtons movie={movie} />
 
             <div>
               <h2 className="text-sm font-semibold text-foreground">

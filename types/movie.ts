@@ -68,3 +68,7 @@ export interface TmdbCreditsResponse {
   id: number;
   cast: TmdbCastMember[];
 }
+
+export interface CollectionItem extends MovieSummary {
+  addedAt: string;
+}
