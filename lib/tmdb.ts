@@ -30,8 +30,15 @@ export function getProfileUrl(profilePath: string | null): string | null {
   return profilePath ? `${PROFILE_BASE_URL}${profilePath}` : null;
 }
 
-async function fetchTmdb<T>(path: string): Promise<T> {
-  const res = await fetch(`${BASE_URL}${path}?api_key=${API_KEY}`);
+async function fetchTmdb<T>(
+  path: string,
+  params: Record<string, string> = {}
+): Promise<T> {
+  const searchParams = new URLSearchParams({
+    api_key: API_KEY ?? "",
+    ...params,
+  });
+  const res = await fetch(`${BASE_URL}${path}?${searchParams.toString()}`);
 
   if (res.status === 404) {
     throw new TmdbNotFoundError("Data tidak ditemukan di TMDB");
@@ -88,6 +95,13 @@ export function getTrendingMoviesWeek(): Promise<MovieSummary[]> {
 
 export function getPopularMovies(): Promise<MovieSummary[]> {
   return fetchMovieList("/movie/popular");
+}
+
+export async function searchMovies(query: string): Promise<MovieSummary[]> {
+  const data = await fetchTmdb<TmdbMovieListResponse>("/search/movie", {
+    query,
+  });
+  return data.results.map(toMovieSummary);
 }
 
 export async function getMovieDetail(id: string): Promise<MovieDetail> {
