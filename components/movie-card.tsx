@@ -17,7 +17,7 @@ export function MovieCard({ movie }: MovieCardProps) {
   return (
     <div className="flex flex-col gap-2">
       <Link href={`/movie/${movie.id}`} className="group flex flex-col gap-2">
-        <div className="relative aspect-[2/3] overflow-hidden rounded-lg border border-border bg-muted">
+        <div className="relative aspect-2/3 overflow-hidden rounded-lg border border-border bg-muted">
           {posterUrl ? (
             <Image
               src={posterUrl}
@@ -37,7 +37,7 @@ export function MovieCard({ movie }: MovieCardProps) {
           </div>
         </div>
         <div className="flex flex-col">
-          <span className="line-clamp-1 text-sm font-medium text-foreground">
+          <span className="line-clamp-1 text-sm font-semibold text-foreground">
             {movie.title}
           </span>
           <span className="text-xs text-muted-foreground">{year}</span>

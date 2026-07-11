@@ -23,7 +23,7 @@ export function MovieDetailView({ id }: MovieDetailViewProps) {
 
   if (notFound) {
     return (
-      <div className="mx-auto w-full max-w-6xl px-4 py-10 md:px-8">
+      <div className="mx-auto w-full max-w-screen-2xl px-4 py-10 md:px-8 md:py-14 lg:px-12">
         <EmptyState message="Film tidak ditemukan." />
       </div>
     );
@@ -31,7 +31,7 @@ export function MovieDetailView({ id }: MovieDetailViewProps) {
 
   if (error || !movie) {
     return (
-      <div className="mx-auto w-full max-w-6xl px-4 py-10 md:px-8">
+      <div className="mx-auto w-full max-w-screen-2xl px-4 py-10 md:px-8 md:py-14 lg:px-12">
         <ErrorState message={error ?? "Gagal memuat detail film."} />
       </div>
     );
@@ -47,7 +47,7 @@ export function MovieDetailView({ id }: MovieDetailViewProps) {
   return (
     <div className="flex flex-col">
       {backdropUrl && (
-        <div className="relative h-56 w-full overflow-hidden sm:h-72 md:h-96">
+        <div className="relative h-64 w-full overflow-hidden sm:h-80 md:h-104 lg:h-120">
           <Image
             src={backdropUrl}
             alt={movie.title}
@@ -59,10 +59,10 @@ export function MovieDetailView({ id }: MovieDetailViewProps) {
         </div>
       )}
 
-      <div className="mx-auto w-full max-w-6xl px-4 py-8 md:px-8">
-        <div className="flex flex-col gap-6 md:flex-row md:gap-10">
+      <div className="mx-auto w-full max-w-screen-2xl px-4 py-10 md:px-8 md:py-14 lg:px-12">
+        <div className="flex flex-col gap-6 md:flex-row md:gap-12">
           <div className="mx-auto w-48 shrink-0 sm:w-56 md:mx-0">
-            <div className="relative aspect-[2/3] overflow-hidden rounded-lg border border-border bg-muted">
+            <div className="relative aspect-2/3 overflow-hidden rounded-lg border border-border bg-muted">
               {posterUrl ? (
                 <Image
                   src={posterUrl}
@@ -80,12 +80,12 @@ export function MovieDetailView({ id }: MovieDetailViewProps) {
             </div>
           </div>
 
-          <div className="flex flex-1 flex-col gap-4">
+          <div className="flex flex-1 flex-col gap-6">
             <div>
-              <h1 className="text-2xl font-semibold text-foreground md:text-3xl">
+              <h1 className="text-3xl font-bold tracking-tight text-foreground md:text-4xl lg:text-5xl">
                 {movie.title}
               </h1>
-              <p className="text-sm text-muted-foreground">
+              <p className="mt-2 text-base text-muted-foreground">
                 {year}
                 {runtimeLabel ? ` · ${runtimeLabel}` : ""}
               </p>
@@ -108,20 +108,20 @@ export function MovieDetailView({ id }: MovieDetailViewProps) {
             <TrackButtons movie={movie} />
 
             <div>
-              <h2 className="text-sm font-semibold text-foreground">
+              <h2 className="text-lg font-semibold tracking-tight text-foreground">
                 Sinopsis
               </h2>
-              <p className="mt-1 text-sm leading-relaxed text-muted-foreground">
+              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
                 {movie.overview || "Sinopsis belum tersedia."}
               </p>
             </div>
 
             {cast.length > 0 && (
               <div>
-                <h2 className="text-sm font-semibold text-foreground">
+                <h2 className="text-lg font-semibold tracking-tight text-foreground">
                   Pemeran
                 </h2>
-                <div className="mt-2 flex gap-4 overflow-x-auto pb-2">
+                <div className="mt-3 flex gap-4 overflow-x-auto pb-2">
                   {cast.map((member) => {
                     const profileUrl = getProfileUrl(member.profilePath);
                     return (

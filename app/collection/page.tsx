@@ -11,8 +11,8 @@ export default function CollectionPage() {
   const watched = useCollectionItems(WATCHED_KEY);
 
   return (
-    <div className="mx-auto w-full max-w-6xl px-4 py-10 md:px-8">
-      <h1 className="mb-6 text-2xl font-semibold text-foreground">
+    <div className="mx-auto w-full max-w-screen-2xl px-4 py-10 md:px-8 md:py-14 lg:px-12">
+      <h1 className="mb-8 text-3xl font-bold tracking-tight text-foreground md:text-4xl">
         Collection
       </h1>
       <Tabs defaultValue="watchlist">

@@ -14,7 +14,7 @@ export default function SearchPage() {
     useMovieSearch();
 
   return (
-    <div className="mx-auto w-full max-w-6xl px-4 py-10 md:px-8">
+    <div className="mx-auto w-full max-w-screen-2xl px-4 py-10 md:px-8 md:py-14 lg:px-12">
       <div className="flex flex-col gap-6">
         <div className="relative">
           <SearchIcon className="pointer-events-none absolute top-1/2 left-3 size-4 -translate-y-1/2 text-muted-foreground" />
